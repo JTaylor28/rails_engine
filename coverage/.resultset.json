@@ -177,13 +177,55 @@
           null
         ]
       },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/factories/customers.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/factories/invoice_items.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/factories/invoices.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          null
+        ]
+      },
       "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/factories/items.rb": {
         "lines": [
           1,
           1,
-          13,
-          13,
-          13,
+          16,
+          16,
+          16,
           1,
           null,
           null
@@ -193,7 +235,25 @@
         "lines": [
           1,
           1,
-          22,
+          25,
+          null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/factories/transactions.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
           null,
           null
         ]
@@ -210,11 +270,8 @@
           null
         ]
       },
-      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/models/item.rb": {
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/models/customer.rb": {
         "lines": [
-          1,
-          1,
-          null,
           1,
           1,
           null
@@ -227,12 +284,91 @@
           null
         ]
       },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/models/invoice_item_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/models/invoice_item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/models/invoice_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/models/invoice.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/models/item_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          2,
+          2,
+          2,
+          null,
+          null,
+          1,
+          2,
+          2,
+          2,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/models/item.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null
+        ]
+      },
       "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/models/merchant_spec.rb": {
         "lines": [
           1,
           null,
           1,
           1,
+          2,
           2,
           null,
           null,
@@ -246,7 +382,24 @@
         "lines": [
           1,
           1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/models/transaction_spec.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          2,
           null,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/models/transaction.rb": {
+        "lines": [
+          1,
           1,
           null
         ]
@@ -258,55 +411,7 @@
           1,
           null,
           1,
-          4,
-          null,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          null,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
+          5,
           null,
           null,
           1,
@@ -323,6 +428,38 @@
           null,
           1,
           null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
           null,
           null,
           null,
@@ -334,6 +471,24 @@
           null,
           1,
           null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          null,
+          1,
+          null,
           null,
           null,
           null,
@@ -357,6 +512,26 @@
           null,
           null,
           null,
+          null,
+          null,
+          null,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          2,
+          2,
           null,
           null,
           null,
@@ -451,6 +626,10 @@
           null,
           null,
           1,
+          1,
+          null,
+          null,
+          1,
           null,
           1,
           1,
@@ -502,6 +681,6 @@
         ]
       }
     },
-    "timestamp": 1680033443
+    "timestamp": 1680041289
   }
 }
