@@ -181,9 +181,9 @@
         "lines": [
           1,
           1,
-          1,
-          1,
-          1,
+          4,
+          4,
+          4,
           1,
           null,
           null
@@ -193,13 +193,14 @@
         "lines": [
           1,
           1,
-          10,
+          13,
           null,
           null
         ]
       },
       "/Users/jamestaylor/Turing/3mod/projects/rails-engine/config/routes.rb": {
         "lines": [
+          1,
           1,
           1,
           1,
@@ -247,6 +248,41 @@
           1,
           null,
           1,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/spec/requests/api/v1/items_request_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          null,
+          1,
+          null,
+          1,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
           null
         ]
       },
@@ -321,7 +357,7 @@
           null
         ]
       },
-      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/controllers/api/v1/items_controller.rb": {
         "lines": [
           1,
           null,
@@ -329,8 +365,8 @@
           1,
           null,
           null,
-          1,
-          2,
+          null,
+          null,
           null,
           null,
           null
@@ -347,6 +383,29 @@
           null
         ]
       },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/serializers/item_serializer.rb": {
+        "lines": [
+          1,
+          1,
+          1,
+          null
+        ]
+      },
+      "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/controllers/api/v1/merchants_controller.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          1,
+          null,
+          null,
+          1,
+          2,
+          null,
+          null,
+          null
+        ]
+      },
       "/Users/jamestaylor/Turing/3mod/projects/rails-engine/app/serializers/merchant_serializer.rb": {
         "lines": [
           1,
@@ -356,6 +415,6 @@
         ]
       }
     },
-    "timestamp": 1679977762
+    "timestamp": 1680022166
   }
 }
