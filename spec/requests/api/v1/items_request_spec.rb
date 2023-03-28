@@ -70,4 +70,39 @@ RSpec.describe 'items api', type: :request  do
       end
     end
   end
+
+  describe "#create" do 
+
+    context "when successful" do
+      it " create a new item" do
+      
+        item_params = ({
+          name: 'Big thing',
+          description: 'Its not a small thing',
+          unit_price: 1000.99,
+          merchant_id: Merchant.first.id
+        })
+
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        post "/api/v1/items/", headers: headers, params: JSON.generate(item: item_params)
+
+        expect(response).to be_successful
+
+        parsed_data = JSON.parse(response.body, symbolize_names: true)
+
+        item_new = Item.last
+        
+        expect(parsed_data[:data][:attributes][:name]).to eq(item_new[:name])
+        expect(parsed_data[:data][:attributes][:description]).to eq(item_new[:description])
+        expect(parsed_data[:data][:attributes][:unit_price]).to eq(item_new[:unit_price])
+        expect(parsed_data[:data][:attributes][:merchant_id]).to eq(item_new[:merchant_id])
+      end 
+    end
+
+    # contest "when unsuccessful" do
+    #   it " it returns an error message when not successfuly created" do
+    #   end
+    # end
+  end
 end
