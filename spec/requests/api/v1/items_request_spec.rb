@@ -13,6 +13,7 @@ RSpec.describe 'items api', type: :request  do
     end
 
     context 'when successful' do
+
       it "returns all items" do
         
         expect(response).to be_successful
@@ -74,7 +75,8 @@ RSpec.describe 'items api', type: :request  do
   describe "#create" do 
 
     context "when successful" do
-      it " create a new item" do
+
+      it "create a new item" do
       
         item_params = ({
           name: 'Big thing',
@@ -87,7 +89,7 @@ RSpec.describe 'items api', type: :request  do
 
         post "/api/v1/items/", headers: headers, params: JSON.generate(item: item_params)
 
-        expect(response).to be_successful
+        expect(response).to have_http_status(201)
 
         parsed_data = JSON.parse(response.body, symbolize_names: true)
 
@@ -102,6 +104,32 @@ RSpec.describe 'items api', type: :request  do
 
     # contest "when unsuccessful" do
     #   it " it returns an error message when not successfuly created" do
+    #   end
+    # end
+  end
+
+  describe "#delete" do
+
+    context "when successful" do
+
+      it " deletes an item " do 
+        item = Item.last
+
+        expect(Item.count).to eq(3)
+
+        delete "/api/v1/items/#{item.id}"
+
+        expect(response).to be_successful
+
+        expect(Item.count).to eq(2)
+        expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+        expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+      end
+    end
+
+    # contest " when unsuccessful" do
+    #   it "returns an error message when not deleted properly" do
+
     #   end
     # end
   end
