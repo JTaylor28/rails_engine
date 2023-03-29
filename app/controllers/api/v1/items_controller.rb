@@ -9,8 +9,16 @@ class Api::V1::ItemsController < ApplicationController
   end
 
   def create
-    # merchant = Merchant.find(params[:merchant_id])
-    render json: ItemSerializer.new(Item.create(item_params)), status: 201
+    merchant = Merchant.find(params[:merchant_id])
+    item = merchant.items.new(item_params)
+    if item.save
+    render json: ItemSerializer.new(item), status: 201
+    else
+      render json: {
+                    message: "item was not created. Attributes must be valid",
+                    errors: item.errors.full_messages.join(', ')
+                  }, status: :bad_request
+    end 
   end
 
   def update
@@ -19,9 +27,9 @@ class Api::V1::ItemsController < ApplicationController
       render json: ItemSerializer.new(item), status: 201
     else
       render json: {
-        "message": "your query could not be completed",
-        "errors": "Merchant ID doesn't exist"
-      }, status: 404 
+                    "message": "your query could not be completed",
+                    "errors": "Merchant ID doesn't exist"
+                  }, status: 404 
     end
   end
 
