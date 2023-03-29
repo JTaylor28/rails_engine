@@ -13,7 +13,6 @@ RSpec.describe 'items api', type: :request  do
     end
 
     context 'when successful' do
-
       it "returns all items" do
         expect(response).to be_successful
 
@@ -73,9 +72,7 @@ RSpec.describe 'items api', type: :request  do
   describe "#create" do 
 
     context "when successful" do
-
       it "create a new item" do
-        
         item_params = ({
           name: 'Big thing',
           description: 'Its not a small thing',
@@ -85,7 +82,7 @@ RSpec.describe 'items api', type: :request  do
         
         headers = {"CONTENT_TYPE" => "application/json"}
           
-        post "/api/v1/items/", headers: headers, params: JSON.generate(item: item_params)
+        post "/api/v1/items/", headers: headers, params: item_params, as: :json
           
         item_new = Item.last
       
@@ -106,10 +103,45 @@ RSpec.describe 'items api', type: :request  do
       end 
     end
 
-    # contest "when unsuccessful" do
-    #   it " it returns an error message when not successfuly created" do
-    #   end
-    # end
+    context "when unsuccessful" do
+      it " returns an error when attribute types are not correct and/or missing " do
+        item_params = ({
+                        name: '',
+                        description: '',
+                        unit_price: "1000.99",
+                        merchant_id: Merchant.first.id
+                      })
+        
+        headers = {"CONTENT_TYPE" => "application/json"}
+          
+        post "/api/v1/items/", headers: headers, params: item_params, as: :json
+        parsed_data = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(400)
+        expect(parsed_data[:message]).to eq("item was not created. Attributes must be valid")
+        expect(parsed_data[:errors]).to eq("Name can't be blank, Description can't be blank")
+      end
+    end
+    
+    it " ignore any attributes sent by the user which are not allowed " do
+      item_params = ({
+                      name: 'Big thing',
+                      description: 'Its not a small thing',
+                      unit_price: 1000.99,
+                      merchant_id: Merchant.first.id,
+                      ignored_attributes: "yadayda"
+                    })
+      
+      headers = {"CONTENT_TYPE" => "application/json"}
+        
+      post "/api/v1/items/", headers: headers, params: item_params, as: :json
+        
+      parsed_data = JSON.parse(response.body, symbolize_names: true)
+
+      expect(parsed_data.size).to eq(1)
+      expect(parsed_data[:data][:attributes].keys).to eq([:name, :description, :unit_price, :merchant_id])
+      expect(parsed_data[:data][:attributes].keys).to_not eq([:name, :description, :unit_price, :merchant_id, :ignored_attributes ])
+    end
   end
 
   describe "#destroy" do
