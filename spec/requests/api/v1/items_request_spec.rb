@@ -148,25 +148,53 @@ RSpec.describe 'items api', type: :request  do
 
     context "when successful" do
       it " deletes an item " do 
-        item = Item.last
+        Item.destroy_all
+        Merchant.destroy_all
 
-        expect(Item.count).to eq(3)
+        merchant = create(:merchant)
+        customer = create(:customer)
 
-        delete "/api/v1/items/#{item.id}"
+        item1 = create(:item, merchant: merchant)
+        item2 = create(:item, merchant: merchant)
+
+        invoice1 = create(:invoice, merchant: merchant, customer: customer)
+        invoice2 = create(:invoice, merchant: merchant, customer: customer)
+
+        invoice_item1 = create(:invoice_item, invoice: invoice1, item: item1, quantity: 2)
+        invoice_item2 = create(:invoice_item, invoice: invoice1, item: item2, quantity: 3)
+        invoice_item3 = create(:invoice_item, invoice: invoice2, item: item1, quantity: 4)
+
+        expect(Item.count).to eq(2)
+				expect(Invoice.count).to eq(2)
+				expect(InvoiceItem.count).to eq(3)
+				expect(Merchant.count).to eq(1)
+
+        delete "/api/v1/items/#{item1.id}"
 
         expect(response).to be_successful
         expect(response).to have_http_status(204)
 
-        expect(Item.count).to eq(2)
-        expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+        expect(Item.count).to eq(1)
+				expect(Invoice.count).to eq(1)
+				expect(InvoiceItem.count).to eq(1)
+				expect(Merchant.count).to eq(1)
+
+        expect{Item.find(item1.id)}.to raise_error(ActiveRecord::RecordNotFound)
       end
     end
 
-    # contest " when unsuccessful" do
-    #   it "returns an error message when not deleted properly" do
+      context " when unsuccessful" do
+      it "Will not delete an item if it does not exist" do
 
-    #   end
-    # end
+        expect(Item.count).to eq(3)
+
+        delete "/api/v1/items/#{0}"
+
+        expect(response).to have_http_status(204)
+        
+        expect(Item.count).to eq(3)
+      end
+    end
   end
 
   describe "#update" do
