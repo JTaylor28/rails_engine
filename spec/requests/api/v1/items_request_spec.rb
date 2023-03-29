@@ -112,7 +112,7 @@ RSpec.describe 'items api', type: :request  do
     # end
   end
 
-  describe "#delete" do
+  describe "#destroy" do
 
     context "when successful" do
       it " deletes an item " do 
@@ -135,5 +135,74 @@ RSpec.describe 'items api', type: :request  do
 
     #   end
     # end
+  end
+
+  describe "#update" do
+
+    context "when successful" do
+      it "updates an item" do
+        merchant = create(:merchant)
+        id = create(:item).id
+        previous_item = Item.last
+        item_params = { name: "new name",
+                        description: "new descriptio",
+                        unit_price: 999.99,
+                        merchant_id: merchant.id
+                      }
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: item_params})
+        
+        updated_item = Item.find_by(id: id)
+
+        parsed_data = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to be_successful
+        expect(response).to have_http_status(201)
+
+        expect(parsed_data[:data].keys).to eq([:id, :type, :attributes])
+        expect(parsed_data[:data][:attributes].keys).to eq([:name, :description, :unit_price, :merchant_id])
+        expect(parsed_data[:data][:id]).to eq(updated_item.id.to_s)
+        expect(parsed_data[:data][:type]).to eq("item")
+        expect(parsed_data[:data][:attributes][:name]).to eq(updated_item[:name])
+        expect(parsed_data[:data][:attributes][:description]).to eq(updated_item[:description])
+        expect(parsed_data[:data][:attributes][:unit_price]).to eq(updated_item[:unit_price])
+        expect(parsed_data[:data][:attributes][:unit_price]).to be_a(Float)
+        expect(parsed_data[:data][:attributes][:merchant_id]).to eq(updated_item[:merchant_id])
+
+        expect(parsed_data[:data][:attributes][:name]).to_not eq(previous_item[:name])
+        expect(parsed_data[:data][:attributes][:description]).to_not eq(previous_item[:description])
+        expect(parsed_data[:data][:attributes][:unit_price]).to_not eq(previous_item[:unit_price])
+      end 
+    end
+
+    context "when unsuccessful" do
+      it "returns an error message for invalid id" do
+        patch "/api/v1/items/71717"
+
+        parsed = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(404)
+        expect(parsed[:message]).to eq("Couldn't find Item with 'id'=71717")
+      end
+
+      it "returns an error for a bad merchant id " do
+        id = create(:item).id
+        previous_item = Item.last
+        bad_params = { name: "new name",
+                        description: "new descriptio",
+                        unit_price: 999.99,
+                        merchant_id: 99999999
+                      }
+        headers = {"CONTENT_TYPE" => "application/json"}
+
+        patch "/api/v1/items/#{id}", headers: headers, params: JSON.generate({item: bad_params})
+
+        parsed = JSON.parse(response.body, symbolize_names: true)
+
+        expect(response).to have_http_status(404)
+        expect(parsed[:errors]).to eq("Merchant ID doesn't exist")
+      end
+    end 
   end
 end
