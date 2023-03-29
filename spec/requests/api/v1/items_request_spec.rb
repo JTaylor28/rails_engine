@@ -146,19 +146,27 @@ RSpec.describe 'items api', type: :request  do
 
   describe "#destroy" do
 
-    it " deletes an item " do 
-      item = Item.last
+    context "when successful" do
+      it " deletes an item " do 
+        item = Item.last
 
-      expect(Item.count).to eq(3)
+        expect(Item.count).to eq(3)
 
-      delete "/api/v1/items/#{item.id}"
+        delete "/api/v1/items/#{item.id}"
 
-      expect(response).to be_successful
-      expect(response).to have_http_status(204)
+        expect(response).to be_successful
+        expect(response).to have_http_status(204)
 
-      expect(Item.count).to eq(2)
-      expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+        expect(Item.count).to eq(2)
+        expect{Item.find(item.id)}.to raise_error(ActiveRecord::RecordNotFound)
+      end
     end
+
+    # contest " when unsuccessful" do
+    #   it "returns an error message when not deleted properly" do
+
+    #   end
+    # end
   end
 
   describe "#update" do
