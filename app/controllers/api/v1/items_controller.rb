@@ -33,14 +33,20 @@ class Api::V1::ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    Item.delete(params[:id])
+  def destroy 
+    item = Item.find(params[:id])
+    item.invoices.each do |invoice|
+      if invoice.items_present?
+        invoice.destroy
+      end
+    end
+    item.destroy
   end
 
   private
 
   def item_params
-    params.require(:item).permit(:name, :description, :unit_price, :merchant_id)
+    params.require(:item).permit(:id, :name, :description, :unit_price, :merchant_id)
   end
 
 end
