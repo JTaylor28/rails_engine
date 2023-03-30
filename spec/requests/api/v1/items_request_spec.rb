@@ -147,7 +147,7 @@ RSpec.describe 'items api', type: :request  do
   describe "#destroy" do
 
     context "when successful" do
-      it " deletes an item " do 
+      it " deletes an item and accociated invoice if invoice has that one item" do 
         Item.destroy_all
         Merchant.destroy_all
 

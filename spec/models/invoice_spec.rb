@@ -10,7 +10,7 @@ RSpec.describe Invoice, type: :model do
 
   describe 'instance methods' do 
     describe '#items_present?' do
-      it "retuens false if invoice have has one or less " do
+      it "retuens false if invoice has one or less item " do
 
         merchant = create(:merchant)
 				customer = create(:customer)
