@@ -190,7 +190,7 @@ RSpec.describe 'items api', type: :request  do
 
         delete "/api/v1/items/#{0}"
 
-        expect(response).to have_http_status(204)
+        expect(response).to have_http_status(404)
         
         expect(Item.count).to eq(3)
       end

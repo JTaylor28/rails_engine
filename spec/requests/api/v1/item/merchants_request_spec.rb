@@ -29,7 +29,6 @@ RSpec.describe "Items merchant API", type: :request do
     context "when unsuccessful" do
       
       before do 
-        @item = create(:item)
         get "/api/v1/items/fhgfhfhf/merchant"
       end
       
