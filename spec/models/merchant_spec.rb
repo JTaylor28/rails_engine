@@ -12,7 +12,7 @@ RSpec.describe Merchant, type: :model do
 
   describe "class methods " do 
     describe "::search_merchant" do
-      it " returns the first merchant object by name alphabetically " do
+      it " returns the first merchant by name alphabetically " do
         merchant_1 = create(:merchant, name: "Chris Smith")
         merchant_2 = create(:merchant, name: "Christopher Taylor")
         merchant_3 = create(:merchant, name: "John Mcdanial ")

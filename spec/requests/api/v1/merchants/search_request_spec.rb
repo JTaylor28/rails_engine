@@ -35,7 +35,7 @@ RSpec.describe "Merchant Search API", type: :request do
         @merchant_4 = create(:merchant, name: "Jonathan parks ")
       end
 
-      it " retuens nil object if merchant cant be found" do
+      it " retuens nil object if merchant cant be found " do
         
         get "/api/v1/merchants/find?name=abc"
 
